@@ -5,7 +5,7 @@ ARCH = h8300-elf
 BINDIR = $(PREFIX)/bin
 ADDNAME = $(ARCH)-
 
-# --- —˜—p‚·‚éƒc[ƒ‹—Þ‚ÌŽw’è
+# --- åˆ©ç”¨ã™ã‚‹ãƒ„ãƒ¼ãƒ«é¡žã®æŒ‡å®š
 AR = $(BINDIR)/$(ADDNAME)ar
 AS = $(BINDIR)/$(ADDNAME)as
 CC = $(BINDIR)/$(ADDNAME)gcc
@@ -16,32 +16,32 @@ OBJDUMP = $(BINDIR)/$(ADDNAME)objdump
 RANLIB = $(BINDIR)/$(ADDNAME)ranlib
 STRIP = $(BINDIR)/$(ADDNAME)strip
 
-# --- ƒtƒ‰ƒbƒVƒ…ROM‘‚«ž‚Ýƒc[ƒ‹
+# --- ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ROMæ›¸ãè¾¼ã¿ãƒ„ãƒ¼ãƒ«
 H8WRITE = ../tools/h8write/h8write
 
 # FreeBSD-4.x:/dev/cuaaX, FreeBSD-6.x:/dev/cuadX, FreeBSD(USB):/dev/cuaUx
 # Linux:/dev/ttySx, Linux(USB):/dev/ttyUSBx, Windows:comX
 
-# --- ƒVƒŠƒAƒ‹Ú‘±æ
+# --- ã‚·ãƒªã‚¢ãƒ«æŽ¥ç¶šå…ˆ
 H8WRITE_SERDEV = /com5
 
-# --- ƒRƒ“ƒpƒCƒ‹‚·‚éƒ\[ƒXƒR[ƒhŒQ
+# --- ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã™ã‚‹ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ç¾¤
 OBJS = vector.o startup.o main.o
 OBJS += lib.o serial.o
 
-# --- ¶¬‚·‚éŽÀsŒ`Ž®‚Ìƒtƒ@ƒCƒ‹–¼
+# --- ç”Ÿæˆã™ã‚‹å®Ÿè¡Œå½¢å¼ã®ãƒ•ã‚¡ã‚¤ãƒ«å
 TARGET = kzload
 
-# --- ƒRƒ“ƒpƒCƒ‹ƒIƒvƒVƒ‡ƒ“
+# --- ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 CFLAGS = -Wall -mh -nostdinc -nostdlib -fno-builtin
 #CFLAGS += -mint32
-# int‚ð32ƒrƒbƒg‚É‚·‚é‚ÆŠ|ŽZ^Š„ŽZ‚ª‚Å‚«‚È‚­‚È‚é
+# intã‚’32ãƒ“ãƒƒãƒˆã«ã™ã‚‹ã¨æŽ›ç®—ï¼å‰²ç®—ãŒã§ããªããªã‚‹
 CFLAGS += -I.
 #CFLAGS += -g
 CFLAGS += -Os
 CFLAGS += -DKZLOAD
 
-# --- ƒŠƒ“ƒNEƒIƒvƒVƒ‡ƒ“
+# --- ãƒªãƒ³ã‚¯ãƒ»ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 LFLAGS = -static -T ld.scr -L.
 
 .SUFFIXES: .c .o
@@ -49,30 +49,30 @@ LFLAGS = -static -T ld.scr -L.
 
 all : $(TARGET)
 
-# --- ŽÀsŒ`Ž®‚Ì¶¬ƒ‹[ƒ‹
+# --- å®Ÿè¡Œå½¢å¼ã®ç”Ÿæˆãƒ«ãƒ¼ãƒ«
 $(TARGET) : $(OBJS)
 			$(CC) $(OBJS) -o $(TARGET) $(CFLAGS) $(LFLAGS)
 			cp $(TARGET) $(TARGET).elf
 			$(STRIP) $(TARGET)
 
-# --- *.cƒtƒ@ƒCƒ‹‚ÌƒRƒ“ƒpƒCƒ‹Eƒ‹[ƒ‹
+# --- *.cãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ãƒ»ãƒ«ãƒ¼ãƒ«
 .c.o : $<
 	   $(CC) -c $(CFLAGS) $<
 
-# --- ƒAƒZƒ“ƒuƒ‰Eƒtƒ@ƒCƒ‹‚ÌƒAƒZƒ“ƒuƒ‹Eƒ‹[ƒ‹
+# --- ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¢ã‚»ãƒ³ãƒ–ãƒ«ãƒ»ãƒ«ãƒ¼ãƒ«
 .s.o : $<
 	   $(CC) -c $(CFLAGS) $<
 
-# --- ƒ‚ƒgƒ[ƒ‰SƒŒƒR[ƒhEƒtƒH[ƒ}ƒbƒg‚Ö‚Ì•ÏŠ·ƒ‹[ƒ‹
+# --- ãƒ¢ãƒˆãƒ­ãƒ¼ãƒ©Sãƒ¬ã‚³ãƒ¼ãƒ‰ãƒ»ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆã¸ã®å¤‰æ›ãƒ«ãƒ¼ãƒ«
 $(TARGET).mot : $(TARGET)
 				$(OBJCOPY) -O srec $(TARGET) $(TARGET).mot
 
 image : $(TARGET).mot
 
-# --- ƒtƒ‰ƒbƒVƒ…ROM‚Ö‚Ì“]‘—
+# --- ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ROMã¸ã®è»¢é€
 write : $(TARGET).mot
 		$(H8WRITE) -3069 -f20 $(TARGET).mot $(H8WRITE_SERDEV)
 
-# --- ƒtƒHƒ‹ƒ_‚Ì‘|œ
+# --- ãƒ•ã‚©ãƒ«ãƒ€ã®æŽƒé™¤
 clean :
 		rm -f $(OBJS) $(TARGET) $(TARGET).elf $(TARGET).mot

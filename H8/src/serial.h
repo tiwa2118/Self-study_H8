@@ -1,4 +1,4 @@
-﻿#ifndef _SERIAL_H_INCLUDE_
+#ifndef _SERIAL_H_INCLUDE_
 #define _SERIAL_H_INCLUDE_
 
 int serial_init( int index );                                /* デバイス初期化 */
